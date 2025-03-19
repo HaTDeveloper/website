@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصالات آمنة ومشفرة</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>اتصالات آمنة ومشفرة</h1>
+            <p>تواصل بخصوصية تامة - لا بيانات مخزنة - تشفير كامل</p>
+        </header>
+        
+        <main>
+            <div id="welcome-screen" class="screen active">
+                <div class="welcome-box">
+                    <h2>أهلاً بك في منصة الاتصالات الآمنة</h2>
+                    <p>اضغط على الزر أدناه للبدء فوراً</p>
+                    <div class="room-controls">
+                        <input type="text" id="room-id-input" placeholder="أدخل اسم الغرفة أو اتركه فارغاً لإنشاء غرفة جديدة">
+                        <div class="button-group">
+                            <button id="start-voice-btn" class="btn primary-btn">بدء مكالمة صوتية فورية</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="voice-screen" class="screen">
+                <div class="voice-container">
+                    <div class="voice-header">
+                        <h2>مكالمة صوتية آمنة</h2>
+                        <div class="room-info">
+                            <span id="room-id-display"></span>
+                            <button id="copy-room-id" class="icon-btn" title="نسخ معرف الغرفة">📋</button>
+                        </div>
+                        <div class="encryption-status secure">
+                            <span class="status-icon">🔒</span>
+                            <span class="status-text">مكالمة مشفرة</span>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-content">
+                        <div id="connection-status" class="connection-status">
+                            جاري الاتصال...
+                        </div>
+                        
+                        <div class="call-status">
+                            <div class="call-icon">🎙️</div>
+                            <div class="call-timer" id="call-timer">00:00</div>
+                            <div class="call-quality" id="call-quality">جودة الاتصال: جيدة</div>
+                        </div>
+                        
+                        <div class="participants" id="participants">
+                            <!-- المشاركون سيظهرون هنا -->
+                        </div>
+                        
+                        <div class="call-controls">
+                            <button id="mute-btn" class="call-btn">🔇 كتم</button>
+                            <button id="end-call-btn" class="call-btn end-call">📞 إنهاء المكالمة</button>
+                            <button id="speaker-btn" class="call-btn">🔊 مكبر الصوت</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>جميع الاتصالات مشفرة من طرف إلى طرف ولا يتم تخزينها على الخوادم</p>
+        </footer>
+    </div>
+    
+    <script src="js/client.js"></script>
+</body>
+</html>
