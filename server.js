@@ -3,25 +3,24 @@ const http = require('http') ;
 const { Server } = require('socket.io');
 const cors = require('cors');
 const path = require('path');
-
 const app = express();
 const server = http.createServer(app) ;
 const io = new Server(server, {
     cors: {
-        origin: '*',
-        methods: ['GET', 'POST']
+        origin: "*",  // السماح بالاتصال من أي مصدر
+        methods: ['GET', 'POST'],
+        credentials: true
     }
 });
-
 // استخدام CORS
-app.use(cors());
-
+app.use(cors({
+    origin: "*",  // السماح بالاتصال من أي مصدر
+    credentials: true
+}));
 // تقديم الملفات الثابتة
 app.use(express.static(path.join(__dirname, 'public')));
-
 // تخزين معلومات الغرف
 const rooms = {};
-
 // معالجة اتصالات Socket.io
 io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
@@ -95,7 +94,6 @@ io.on('connection', (socket) => {
         }
     });
 });
-
 // وظيفة مساعدة لمعالجة مغادرة المستخدم
 function handleUserLeaving(socket, roomId) {
     console.log(`User ${socket.id} leaving room ${roomId}`);
@@ -120,7 +118,6 @@ function handleUserLeaving(socket, roomId) {
     socket.leave(roomId);
     socket.roomId = null;
 }
-
 // تعيين المنفذ
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
